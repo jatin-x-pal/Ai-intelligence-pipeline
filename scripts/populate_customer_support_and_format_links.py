@@ -12,8 +12,10 @@ Features:
 """
 
 import asyncio
-from datetime import UTC, datetime, timedelta
 import random
+from datetime import UTC, datetime, timedelta
+
+import gspread
 
 from src.export.google_sheets import exporter
 
@@ -240,7 +242,7 @@ async def populate_and_format():
     # Ensure tab exists
     try:
         ws_cs = spreadsheet.worksheet("Customer Support Examples")
-    except Exception:
+    except (gspread.exceptions.WorksheetNotFound, Exception):  # noqa: BLE001
         ws_cs = spreadsheet.add_worksheet("Customer Support Examples", rows="250", cols="10")
 
     # Generate 200 examples
@@ -275,7 +277,7 @@ async def populate_and_format():
     for tab in ["Startups", "Products", "Research Papers", "Jobs", "News"]:
         try:
             ws = spreadsheet.worksheet(tab)
-        except Exception:
+        except (gspread.exceptions.WorksheetNotFound, Exception):  # noqa: BLE001, S112
             continue
         
         all_data = ws.get_all_values()

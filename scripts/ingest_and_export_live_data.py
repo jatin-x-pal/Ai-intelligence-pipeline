@@ -13,6 +13,7 @@ Upserts into PostgreSQL and exports into Google Sheets.
 
 import asyncio
 from datetime import UTC, datetime, timedelta
+
 import aiohttp
 
 from src.config import get_settings
@@ -407,13 +408,16 @@ async def fetch_github_stars(repo_path: str) -> int | None:
     url = f"https://api.github.com/repos/{repo_path}"
     headers = {"User-Agent": "ai-intelligence-pipeline/1.0"}
     try:
-        async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=5)) as session:
-            async with session.get(url, headers=headers) as resp:
-                if resp.status == 200:
-                    data = await resp.json()
-                    return data.get("stargazers_count")
-    except Exception:
-        pass
+        timeout = aiohttp.ClientTimeout(total=5)
+        async with (
+            aiohttp.ClientSession(timeout=timeout) as session,
+            session.get(url, headers=headers) as resp,
+        ):
+            if resp.status == 200:
+                data = await resp.json()
+                return data.get("stargazers_count")
+    except (aiohttp.ClientError, TimeoutError):
+        return None
     return None
 
 async def run_ingestion_and_export():
