@@ -1,0 +1,182 @@
+# AI Intelligence Pipeline — Data Source Registry
+# Configurable source definitions for all ingestion targets.
+# Categories: startup, product, research, news, job
+# Crawl methods: http, browser
+
+sources:
+  # ============================================================================
+  # 1. Startup Sources
+  # ============================================================================
+  - name: "Y Combinator AI Startups"
+    base_url: "https://www.ycombinator.com/companies?industry=AI"
+    category: "startup"
+    crawl_method: "browser"
+    enabled: true
+    rate_limit_per_second: 1.0
+    max_concurrency: 2
+    timeout_seconds: 45.0
+
+  - name: "Techstars AI Portfolio"
+    base_url: "https://www.techstars.com/portfolio"
+    category: "startup"
+    crawl_method: "http"
+    enabled: true
+    rate_limit_per_second: 2.0
+    max_concurrency: 3
+    timeout_seconds: 30.0
+
+  # ============================================================================
+  # 2. Product Sources
+  # ============================================================================
+  - name: "Product Hunt AI"
+    base_url: "https://www.producthunt.com/topics/artificial-intelligence"
+    category: "product"
+    crawl_method: "browser"
+    enabled: true
+    rate_limit_per_second: 1.0
+    max_concurrency: 2
+    timeout_seconds: 45.0
+
+  - name: "Futurepedia"
+    base_url: "https://www.futurepedia.io/"
+    category: "product"
+    crawl_method: "http"
+    enabled: true
+    rate_limit_per_second: 2.0
+    max_concurrency: 4
+    timeout_seconds: 30.0
+
+  - name: "Theres An AI For That"
+    base_url: "https://theresanaiforthat.com/"
+    category: "product"
+    crawl_method: "http"
+    enabled: true
+    rate_limit_per_second: 2.0
+    max_concurrency: 4
+    timeout_seconds: 30.0
+
+  # ============================================================================
+  # 3. Research Sources (ArXiv & Papers With Code)
+  # ============================================================================
+  - name: "ArXiv AI Recent"
+    base_url: "https://arxiv.org/list/cs.AI/recent"
+    category: "research"
+    crawl_method: "http"
+    enabled: true
+    rate_limit_per_second: 1.0
+    max_concurrency: 2
+    timeout_seconds: 30.0
+
+  - name: "ArXiv Machine Learning Recent"
+    base_url: "https://arxiv.org/list/cs.LG/recent"
+    category: "research"
+    crawl_method: "http"
+    enabled: true
+    rate_limit_per_second: 1.0
+    max_concurrency: 2
+    timeout_seconds: 30.0
+
+  - name: "Papers With Code"
+    base_url: "https://paperswithcode.com/latest"
+    category: "research"
+    crawl_method: "http"
+    enabled: true
+    rate_limit_per_second: 2.0
+    max_concurrency: 3
+    timeout_seconds: 30.0
+
+  # ============================================================================
+  # 4. AI News Sources (5 Sources)
+  # ============================================================================
+  - name: "MIT Technology Review AI"
+    base_url: "https://www.technologyreview.com/topic/artificial-intelligence/"
+    category: "news"
+    crawl_method: "http"
+    enabled: true
+    rate_limit_per_second: 2.0
+    max_concurrency: 3
+    timeout_seconds: 30.0
+
+  - name: "VentureBeat AI"
+    base_url: "https://venturebeat.com/category/ai/"
+    category: "news"
+    crawl_method: "http"
+    enabled: true
+    rate_limit_per_second: 2.0
+    max_concurrency: 3
+    timeout_seconds: 30.0
+
+  - name: "TechCrunch AI"
+    base_url: "https://techcrunch.com/category/artificial-intelligence/"
+    category: "news"
+    crawl_method: "http"
+    enabled: true
+    rate_limit_per_second: 2.0
+    max_concurrency: 3
+    timeout_seconds: 30.0
+
+  - name: "The Verge AI"
+    base_url: "https://www.theverge.com/ai-artificial-intelligence"
+    category: "news"
+    crawl_method: "http"
+    enabled: true
+    rate_limit_per_second: 2.0
+    max_concurrency: 3
+    timeout_seconds: 30.0
+
+  - name: "Ars Technica AI"
+    base_url: "https://arstechnica.com/information-technology/"
+    category: "news"
+    crawl_method: "http"
+    enabled: true
+    rate_limit_per_second: 2.0
+    max_concurrency: 3
+    timeout_seconds: 30.0
+
+  # ============================================================================
+  # 5. AI Job Boards (5 Sources)
+  # ============================================================================
+  - name: "Work at a Startup AI"
+    base_url: "https://www.workatastartup.com/companies?demographic=any&industry=Artificial+Intelligence"
+    category: "job"
+    crawl_method: "browser"
+    enabled: true
+    rate_limit_per_second: 1.0
+    max_concurrency: 2
+    timeout_seconds: 45.0
+
+  - name: "RemoteOK AI"
+    base_url: "https://remoteok.com/remote-ai-jobs"
+    category: "job"
+    crawl_method: "http"
+    enabled: true
+    rate_limit_per_second: 2.0
+    max_concurrency: 3
+    timeout_seconds: 30.0
+
+  - name: "Wellfound AI"
+    base_url: "https://wellfound.com/role/l/artificial-intelligence"
+    category: "job"
+    crawl_method: "browser"
+    enabled: true
+    rate_limit_per_second: 1.0
+    max_concurrency: 2
+    timeout_seconds: 45.0
+
+  - name: "AIJobs.net"
+    base_url: "https://aijobs.net/"
+    category: "job"
+    crawl_method: "http"
+    enabled: true
+    rate_limit_per_second: 2.0
+    max_concurrency: 3
+    timeout_seconds: 30.0
+
+  - name: "WeWorkRemotely AI"
+    base_url: "https://weworkremotely.com/categories/remote-machine-learning-ai-jobs"
+    category: "job"
+    crawl_method: "http"
+    enabled: true
+    rate_limit_per_second: 2.0
+    max_concurrency: 3
+    timeout_seconds: 30.0

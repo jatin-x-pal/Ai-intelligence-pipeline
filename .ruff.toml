@@ -1,0 +1,10 @@
+[lint]
+ignore = [
+    "E501",   # line too long
+    "B008",   # function call in default arg
+    "E402",   # module level import
+    "RUF003", # ambiguous dash
+    "DTZ",    # datetime timezone in test asserts
+    "F811",   # redefined test functions
+    "RUF012", # mutable class default in test mocks
+]
