@@ -1,9 +1,8 @@
 from __future__ import annotations
 
 from datetime import datetime
-from typing import ClassVar
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class EntityMappingLog(BaseModel):
@@ -11,6 +10,8 @@ class EntityMappingLog(BaseModel):
 
     All fields are immutable after creation - the model is used as a plain data container.
     """
+
+    model_config = ConfigDict(frozen=True)
 
     raw_name: str = Field(..., description="The original name as extracted from the source")
     canonical_name: str | None = Field(
@@ -26,8 +27,3 @@ class EntityMappingLog(BaseModel):
         default_factory=lambda: datetime.utcnow(),
         description="UTC timestamp when the mapping was created",
     )
-
-    class Config:
-        allow_mutation = False
-        frozen = True
-        json_encoders: ClassVar[dict] = {datetime: lambda v: v.isoformat() + "Z"}
