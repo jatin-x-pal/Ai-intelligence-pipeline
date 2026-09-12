@@ -5,7 +5,7 @@ exact matches, seed list matches, ambiguous and unresolved names, and
 log entry fields.
 """
 
-from datetime import datetime
+from datetime import UTC, datetime
 
 import pytest
 
@@ -48,7 +48,7 @@ def test_raw_name_preserved_and_timestamp():
     assert log.canonical_name == "OpenAI"
     assert log.source == "test_source"
     # Timestamp should be a recent datetime (within a minute of now)
-    now = datetime.utcnow()
+    now = datetime.now(UTC)
     delta = now - log.timestamp
     assert delta.total_seconds() < 60
 

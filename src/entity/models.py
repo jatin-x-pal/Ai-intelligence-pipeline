@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import UTC, datetime
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -24,6 +24,6 @@ class EntityMappingLog(BaseModel):
         description="Optional provenance identifier (e.g., URL, source name)",
     )
     timestamp: datetime = Field(
-        default_factory=lambda: datetime.utcnow(),
+        default_factory=lambda: datetime.now(UTC),
         description="UTC timestamp when the mapping was created",
     )
